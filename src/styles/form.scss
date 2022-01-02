@@ -1,0 +1,77 @@
+.dark_mode {
+	background-color: $Dark_Mode_Background;
+}
+.form {
+	padding: 1.5em 0 0 0;
+	display: flex;
+	justify-content: space-between;
+
+	&__search {
+		background-color: $Dark_Blue;
+		padding: 0.7em 1.5em;
+		display: flex;
+		height: 40px;
+		align-items: center;
+		color: $White;
+		border-radius: 5px;
+		box-shadow: 0 0 12px $Dark_Mode_Background;
+		&__icon {
+			margin-right: 1em;
+		}
+		&__input {
+			background-color: $Dark_Blue;
+			border: none;
+		}
+	}
+	&__filter {
+		background-color: $Dark_Blue;
+		padding: 0.7em 1.5em;
+		border: none;
+		border-radius: 5px;
+		box-shadow: 0 0 12px $Dark_Mode_Background;
+		color: $White;
+		&__option {
+			padding: 0.7em 1.5em;
+		}
+	}
+}
+.gridCountries {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: auto;
+	gap: 2.5em;
+	padding: 2.5em 0;
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	background-color: $Dark_Blue;
+	border-radius: 0.5em;
+	&__image {
+		width: 1fr;
+		height: 170px;
+		object-fit: cover;
+	}
+	&__text {
+		padding: 1.5em;
+		color: $White;
+		&__title {
+			font-weight: 600;
+			font-size: 1.1em;
+			margin-bottom: 1em;
+		}
+		&__description {
+			font-size: 0.9em;
+			font-weight: 200;
+			color: rgba($White, 0.6);
+			line-height: 1.5em;
+			&__bold {
+				margin-right: 0.5em;
+				font-weight: 300;
+				color: $White;
+			}
+		}
+	}
+}

@@ -1,0 +1,25 @@
+.darck_blue {
+	background-color: $Dark_Blue;
+}
+.nav {
+	margin: 0 auto;
+	max-width: 1240px;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	&__title {
+		color: $White;
+		font-weight: 600;
+	}
+	&__mode {
+		display: flex;
+		height: 30px;
+		align-items: center;
+		color: $White;
+		font-weight: 300;
+		svg {
+			margin-right: 10px;
+		}
+	}
+}

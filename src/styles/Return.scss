@@ -1,0 +1,28 @@
+@import "./config/fonts.scss";
+@import "./config/config.scss";
+@import "./config/colors.scss";
+
+.return__container{
+    max-width: 1440px;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--dark-mode-background);
+   
+    &-button{
+        width: 120px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: none;
+        padding: 5px 20px;
+        background-color: var(--dark-blue);
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(#000,0.5);
+        color: var(--white);
+        font-size: 1.2rem;
+        font-weight: lighter;
+    }
+}

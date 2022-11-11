@@ -1,5 +1,9 @@
+@import "./config/fonts.scss";
+@import "./config/config.scss";
+@import "./config/colors.scss";
+
 .darck_blue {
-	background-color: $Dark_Blue;
+	background-color: var(--dark-blue)
 }
 .nav {
 	margin: 0 auto;
@@ -9,14 +13,14 @@
 	align-items: center;
 	justify-content: space-between;
 	&__title {
-		color: $White;
+		color: var(--white);
 		font-weight: 600;
 	}
 	&__mode {
 		display: flex;
 		height: 30px;
 		align-items: center;
-		color: $White;
+		color: var(--white);
 		font-weight: 300;
 		svg {
 			margin-right: 10px;

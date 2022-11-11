@@ -1,7 +1,8 @@
 import React from "react";
+import "../styles/Header.scss";
 import NightsStayRoundedIcon from "@mui/icons-material/NightsStayRounded";
 
-const Header = () => (
+export const Header = () => (
 	<header className="container darck_blue">
 		<nav className="continer-max nav">
 			<h1 className="nav__title">Where in the World?</h1>
@@ -12,4 +13,3 @@ const Header = () => (
 	</header>
 );
 
-export default Header;

@@ -1,20 +1,21 @@
 import React from "react";
-import "./styles/styles.scss";
-import Header from "./components/Header";
-import Grid from "./components/Grid";
 import {
 	BrowserRouter as Router,
 	Routes,
 	Route
   } from "react-router-dom";
+import { Description } from "./components/Description";
+import { Header } from "./components/Header";
+
 
 const App = () => (
 	<Router>
-		<Header/>
-		<Routes>
+		<Header />
+		{/* <Routes>
 			<Route path="/" element={<Grid peticion={"/all"} />} />
-		</Routes>
-				
+			<Route path="/" element={<Grid peticion={"/description"} />} />
+		</Routes> */}
+		<Description />	
 	</Router>
 );
 

@@ -1,15 +1,23 @@
-@import "fonts.scss";
-@import "colors.scss";
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+@import "./fonts.scss";
+@import "./colors.scss";
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Nunito Sans', sans-serif;
 }
-.container{
-    width: 100;
+.container {
+	width: 100;
 }
-.container-max{
-    max-width: 1240px;
-    margin: 0 auto;
+.container-max {
+	max-width: 1240px;
+	margin: 0 auto;
+}
+
+.darck-header {
+	background-color: var(--dark-blue);
+}
+
+.darck-body {
+	background-color: var(--dark-mode-background);
 }

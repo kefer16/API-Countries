@@ -1,0 +1,41 @@
+.country {
+	&-container {
+		min-height: calc(100vh - 180px) ;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 2rem;
+		padding: 0 20px;
+		@media screen and (max-width: 600px) {
+			grid-template-columns: repeat(1, 1fr);
+		}
+	}
+	&-image {
+		width: 100%;
+		box-shadow: 0 0 7px rgba(#222, 0.5);
+		
+	}
+	&-descripcion {
+		width: 100%;
+		color: var(--white);
+		&-text {
+			font-weight: 300;
+			line-height: 2;
+			font-size: 1.1rem;
+			&-bold {
+				font-weight: 600;
+			}
+		}
+		&-title {
+			font-size: 1.7rem;
+			font-weight: 800;
+			margin-bottom: 10px;
+		}
+	}
+}
+
+.separator {
+	width: 100%;
+	// display: none;
+	visibility: hidden;
+	margin: 20px 0;
+}

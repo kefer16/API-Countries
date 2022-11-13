@@ -1,27 +1,25 @@
-@import "./config/fonts.scss";
-@import "./config/config.scss";
-@import "./config/colors.scss";
-
-.darck_blue {
-	background-color: var(--dark-blue)
-}
-.nav {
-	margin: 0 auto;
-	max-width: 1240px;
-	height: 60px;
+.header-container {
+	width: 100;
+	height: 80px;
+	padding: 0 20px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	&__title {
-		color: var(--white);
-		font-weight: 600;
+	font-size: 1.1rem;
+	@media screen and (max-width: 600px) {
+		font-size: .8rem;
 	}
-	&__mode {
+
+	&-title {
+		color: var(--white);
+		font-weight: 800;
+	}
+	&-mode {
 		display: flex;
 		height: 30px;
 		align-items: center;
 		color: var(--white);
-		font-weight: 300;
+		font-weight: 600;
 		svg {
 			margin-right: 10px;
 		}

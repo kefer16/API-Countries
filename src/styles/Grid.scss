@@ -1,0 +1,29 @@
+.gridcountries {
+	display: grid;
+	min-height: calc(100vh - 160px);
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: auto;
+	gap: 2.5em;
+	padding: 0 20px 20px 20px;
+
+	@media screen and (max-width: 600px) {
+		grid-template-columns: repeat(1, 1fr);
+	}
+	@media screen and (min-width: 600px) and (max-width: 800px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	@media screen and (min-width: 800px) and (max-width: 1000px) {
+		grid-template-columns: repeat(3, 1fr);
+	}
+	&-vacio{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: var(--white);
+		grid-column-start: 1;
+  		grid-column-end: 5;
+		font-size: 1.4rem;
+		font-style: italic;
+	}
+}
+

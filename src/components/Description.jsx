@@ -1,27 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import get from "axios";
 import "../styles/Description.scss";
 import { Return } from "./Return";
+import { BorderCountry } from "./BorderCountry";
+import { Country } from "./Country";
+import { useParams } from "react-router-dom";
 
-export const Description = ({ flagName }) => {
+const getCountries = async (codeCountry) => {
+	const url = `${process.env.REACT_APP_URL_API}/alpha/${codeCountry}`;
+	let data = [];
+	await get(url).then(function (response) {
+		data = response.data;
+	});
+	return data;
+};
+
+export const Description = (props) => {
+
+	const { codeCountry } = useParams();
+	const [countries, setCountries] = useState([]);
+
+	useEffect(() => {
+		window.scroll(0, 0)
+		const execute = async () => {
+			const dataCountry = await getCountries(codeCountry);
+			setCountries(dataCountry);
+		};
+
+		execute();
+	}, [codeCountry]);
+
 	return (
-		<div className="flag-container">
-			<Return />
-			<img className="flag__image" src="" alt={`bandera de ${flagName}`} />
-			<div className="flag__descripcion">
-				<h2 className="flag__descripcion-title">Belgin</h2>
-				<p className="flag__descripcion-name">Belgie</p>
-				<p className="flag__descripcion-region">Europe</p>
-				<p className="flag__descripcion-subregion">Western Europe</p>
-				<p className="flag__descripcion-capital">Brussels</p>
-				<p className="flag__descripcion-toplevel">.be</p>
-				<p className="flag__descripcion-currencies">Euro</p>
-				<p className="flag__descripcion-languages">{`Dutch, Germany`}</p>
-			</div>
-			<div className="flag__similar">
-				<span className="flag__similar__item">France</span>
-				<span className="flag__similar__item">Germany</span>
-				<span className="flag__similar__item">Netherlands</span>
-			</div>
-		</div>
+		<>
+			{countries.map((countryFeatures) => (
+				<>
+					<Return />
+					<Country
+						key={countryFeatures.cca2}
+						svgImage={countryFeatures.flags.svg}
+						title={countryFeatures.name.common}
+						nativeName={Object.values(countryFeatures.name.nativeName)[0].common}
+						population={Intl.NumberFormat().format(countryFeatures.population)}
+						region={countryFeatures.region}
+						subRegion={countryFeatures.subregion}
+						capital={countryFeatures.capital}
+						topLevelDomain={countryFeatures.tld}
+						currencies={Object.values(countryFeatures.currencies)[0].name}
+						languages={Object.values(countryFeatures.languages).toString()}
+					/>
+					{countryFeatures.borders ? (
+						<BorderCountry key={countryFeatures.cca3} borders={countryFeatures.borders} />
+					) : (
+						<></>
+					)}
+				</>
+			))}
+		</>
 	);
 };

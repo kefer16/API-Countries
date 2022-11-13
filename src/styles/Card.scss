@@ -1,0 +1,48 @@
+.card {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	background-color: var(--dark-blue);
+	border-radius: 0.5em;
+	cursor: pointer;
+	text-decoration: none;
+	&-image {
+		width: 1fr;
+		
+		object-fit: cover;
+	}
+	&-text {
+		padding: 1.5em;
+		color: var(--white);
+		&-title {
+			font-weight: 600;
+			font-size: 1.1em;
+			margin-bottom: 1em;
+		}
+		&-description {
+			font-size: 0.9em;
+			font-weight: 200;
+			color: rgba(var(--white), 0.6);
+			line-height: 1.5em;
+			&-bold {
+				margin-right: 0.5em;
+				font-weight: 300;
+				color: var(--white);
+			}
+		}
+	}
+
+	&:hover {
+		animation: example both 0.7s;
+	}
+}
+
+@keyframes example {
+	0% {
+		transform:translateY(-7px);
+	}
+	
+	100% {
+		translatey: translateY(0px);
+	}
+}

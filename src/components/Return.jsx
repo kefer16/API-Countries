@@ -1,14 +1,17 @@
 import React from "react";
 import "../styles/Return.scss";
-import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
+import { Link } from "react-router-dom";
 
 export const Return = () => {
 	return (
-		<div className="return__container">
-			<button className="return__container-button">
-				{" "}
-				<KeyboardBackspaceIcon /> Back
-			</button>
+		<div className="darck-body container">
+			<div className="return-container container-max">
+				<Link to="/" className="return-container-button">
+					<KeyboardBackspaceRoundedIcon /> Back
+				</Link>
+			</div>
 		</div>
+		
 	);
 };

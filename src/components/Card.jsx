@@ -1,26 +1,26 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import "../styles/Card.scss";
 
-const Card = ({ image, name, population, region, capital }) => {
+export const Card = ({ code,image, name, population, region, capital }) => {
 	return (
-		<div className="card">
-			<img src={image} alt={name} className="card__image" loading="lazy" />
-			<div className="card__text">
-				<h2 className="card__text__title">{name}</h2>
-				<p className="card__text__description">
-					<b className="card__text__description__bold">Population:</b>
+		<Link to={`/description/${code}`} className="card">
+			<img src={image} alt={name} className="card-image" loading="lazy" />
+			<div className="card-text">
+				<h2 className="card-text-title">{name}</h2>
+				<p className="card-text-description">
+					<b className="card-text-description-bold">Population:</b>
 					{population}
 				</p>
-				<p className="card__text__description">
-					<b className="card__text__description__bold">Region:</b>
+				<p className="card-text-description">
+					<b className="card-text-description-bold">Region:</b>
 					{region}
 				</p>
-				<p className="card__text__description">
-					<b className="card__text__description__bold">Capital:</b>
+				<p className="card-text-description">
+					<b className="card-text-description-bold">Capital:</b>
 					{capital}
 				</p>
 			</div>
-		</div>
+		</Link>
 	);
 };
-
-export default Card;

@@ -1,54 +1,62 @@
 import { useEffect, useState } from "react";
 import get from "axios";
-import Card from "./Card";
-import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
+import { Card } from "./Card";
+import "../styles/Grid.scss";
 
-const Grid = ({ peticion }) => {
+const getCountries = async (searchValue, peticion) => {
+	let url = "",data = [];
+
+	if (peticion === "all") {
+		url = `${process.env.REACT_APP_URL_API}/${peticion}`;
+	} else {
+		url = `${process.env.REACT_APP_URL_API}/region/${peticion}`;
+	}
+
+	await get(url).then(function (response) {
+		data = response.data;
+	});
+
+	if (searchValue) {
+		data = data.filter(function (item) {
+			return item.name.common.toLowerCase().includes(searchValue.toLowerCase());
+		});
+	}
+
+	return data;
+};
+
+export const Grid = ({ searchValue, peticion }) => {
 	const [cards, setCards] = useState();
-	const url = `${process.env.REACT_APP_URL_API}${peticion}`;
-	console.log(url);
+
 	useEffect(() => {
-		get(url)
-			.then(({ data }) => setCards(data))
-			.catch((e) => console.log(e));
-	}, [peticion]);
+		console.log("pasa");
+		const execute = async () => {
+			const dataCountries = await getCountries(searchValue, peticion);
+			setCards(dataCountries);
+		};
+
+		execute();
+	}, [searchValue, peticion]);
 
 	return (
-		<div className="container dark_mode">
-			<form action="" className="container-max form">
-				<div className="form__search" action="">
-					<SearchRoundedIcon className="form__search__icon" />
-					<input
-						type="text"
-						placeholder="Search for a Country"
-						className="form__search__input"
-					/>
-				</div>
-
-				<select name="" id="" className="form__filter">
-					<option className="form__filter__option" value="0">
-						Filter to by Region
-					</option>
-					<option className="form__filter__option" value="0">
-						Africa
-					</option>
-					<option className="form__filter__option" value="0">
-						America
-					</option>
-				</select>
-			</form>
+		<div className="darck-body container">
 			{cards ? (
-				<div className="container-max gridCountries">
-					{cards.map((c) => {
-						const id = c.cca3;
+				<div className="gridcountries container-max ">
+					{cards.length === 0 ? (
+						<p className="gridcountries-vacio">No country found, change filters</p>
+					) : (
+						<></>
+					)}
+					{cards.map((card) => {
 						return (
 							<Card
-								key={id}
-								image={c.flags.png}
-								name={c.name.common}
-								population={c.population.toLocaleString('en-US')}
-								region={c.region}
-								capital={c.capital}
+								key={card.cca3}
+								code={card.cca3}
+								image={card.flags.png}
+								name={card.name.common}
+								population={card.population.toLocaleString("en-US")}
+								region={card.region}
+								capital={card.capital}
 							/>
 						);
 					})}
@@ -59,5 +67,3 @@ const Grid = ({ peticion }) => {
 		</div>
 	);
 };
-
-export default Grid;

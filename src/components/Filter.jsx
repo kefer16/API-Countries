@@ -30,21 +30,19 @@ const filterOptions = [
 	},
 ];
 export const Filter = () => {
-
 	const [region, setRegion] = useState("all");
-	const [search,setSearch] = useState("");
+	const [search, setSearch] = useState("");
 
 	function filterSubmit(e) {
 		e.preventDefault();
 	}
 
-	function regionSelected(e){
-		setRegion(e.target.value)
+	function regionSelected(e) {
+		setRegion(e.target.value);
 	}
 
-	function searchChange(e){
-		
-		setSearch(e.target.value)
+	function searchChange(e) {
+		setSearch(e.target.value);
 		e.preventDefault();
 	}
 
@@ -62,6 +60,7 @@ export const Filter = () => {
 								type="text"
 								placeholder="Search for a Country"
 								className="form-container-search-input"
+								autoComplete="off"
 							/>
 						</div>
 
@@ -84,10 +83,7 @@ export const Filter = () => {
 				</div>
 			</div>
 
-			<Grid
-				searchValue={search}
-				peticion={region ? region : "all"}
-			/>
+			<Grid searchValue={search} peticion={region ? region : "all"} />
 		</>
 	);
 };

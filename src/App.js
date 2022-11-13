@@ -7,7 +7,7 @@ import { Header } from "./components/Header";
 import { Home } from "./components/Home";
 
 const App = () => (
-	<Router >
+	<Router>
 		<Header />
 		<Routes>
 			<Route path="/" element={<Home />} />

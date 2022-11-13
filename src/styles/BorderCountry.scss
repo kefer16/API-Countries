@@ -5,11 +5,12 @@
 	gap: 1rem;
 	padding: 1rem 0;
 	justify-content: space-between;
+
 	&-container {
 		padding: 20px;
+		color: var(--white);
 	}
 	&-title {
-		color: var(--white);
 		font-weight: 600;
 		font-size: 1.2rem;
 	}
@@ -19,14 +20,16 @@
 		align-items: center;
 		height: 40px;
 		padding: 5px 30px;
-
 		background-color: var(--dark-blue);
 		box-shadow: 0 0 7px rgba(#222, 0.5);
 		font-size: 1rem;
 		font-weight: 300;
 		border-radius: 3px;
-		color: var(--white);
 		cursor: pointer;
 		text-decoration: none;
+		color: var(--white);
+	}
+	&-nofound {
+		font-style: italic;
 	}
 }

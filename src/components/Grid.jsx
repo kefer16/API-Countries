@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import get from "axios";
 import { Card } from "./Card";
 import "../styles/Grid.scss";
+import { Loader } from "./Loader";
 
 const getCountries = async (searchValue, peticion) => {
 	let url = "",data = [];
@@ -29,7 +30,7 @@ export const Grid = ({ searchValue, peticion }) => {
 	const [cards, setCards] = useState();
 
 	useEffect(() => {
-		console.log("pasa");
+		
 		const execute = async () => {
 			const dataCountries = await getCountries(searchValue, peticion);
 			setCards(dataCountries);
@@ -62,7 +63,7 @@ export const Grid = ({ searchValue, peticion }) => {
 					})}
 				</div>
 			) : (
-				<span>Cargando...</span>
+				<Loader oculte={false}/>
 			)}
 		</div>
 	);

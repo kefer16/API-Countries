@@ -24,5 +24,8 @@
 		font-weight: 300;
 		cursor: pointer;
 		text-decoration: none;
+		&:hover{
+			background-color:rgba(#000,0.3) ;
+		}
 	}
 }

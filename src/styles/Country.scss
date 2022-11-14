@@ -1,3 +1,5 @@
+@import "./config/config.scss";
+
 .country {
 	&-container {
 		min-height: calc(100vh - 180px) ;
@@ -11,12 +13,12 @@
 	}
 	&-image {
 		width: 100%;
-		box-shadow: 0 0 7px rgba(#222, 0.5);
+		@extend %style-boxshadow;
 		
 	}
 	&-descripcion {
 		width: 100%;
-		color: var(--white);
+		color: var(--text-color);
 		&-text {
 			font-weight: 300;
 			line-height: 2;

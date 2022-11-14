@@ -16,12 +16,15 @@ const getCountries = async (searchValue, peticion) => {
 	await get(url).then(function (response) {
 		data = response.data;
 	});
-
+	
 	if (searchValue) {
 		data = data.filter(function (item) {
 			return item.name.common.toLowerCase().includes(searchValue.toLowerCase());
 		});
 	}
+
+	// data = data.slice(16,32)
+	// console.log(data.length);
 
 	return data;
 };
@@ -40,7 +43,7 @@ export const Grid = ({ searchValue, peticion }) => {
 	}, [searchValue, peticion]);
 
 	return (
-		<div className="darck-body container">
+		<div className="background-body container">
 			{cards ? (
 				<div className="gridcountries container-max ">
 					{cards.length === 0 ? (

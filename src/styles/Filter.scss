@@ -1,3 +1,5 @@
+@import "./config/config.scss";
+
 .filter-container {
 	padding: 0 20px;
 }
@@ -8,20 +10,21 @@
 	flex-direction: row;
 	justify-content: space-between;
 	gap: 2rem;
+	color: var(--text-color);
+
 	@media screen and (max-width: 600px) {
 		flex-direction: column;
 	}
 
 	&-search {
-		
-		background-color: var(--dark-blue);
+		@extend %style-boxshadow;
+		background-color: var(--background-primary);
 		padding: 10px;
 		display: flex;
 		height: 40px;
 		align-items: center;
-		color: var(--white);
 		border-radius: 5px;
-		box-shadow: 0 0 12px var(--dark-mode-background);
+		
 		
 		&-icon {
 			
@@ -30,10 +33,10 @@
 		}
 		&-input {
 			width: 100%;
-			background-color: var(--dark-blue);
+			background-color: var(--background-primary);
 			border: none;
 			user-select: none;
-			color: var(--white);
+			color: var(--text-color);
             font-weight: 300;
 			outline: none;
 			height: 40px;
@@ -41,11 +44,11 @@
 		}
 	}
 	&-filter {
-		background-color: var(--dark-blue);
+		@extend %style-boxshadow;
+		background-color: var(--background-primary);
 		padding: 10px 20px;
 		border: none;
 		border-radius: 5px;
-		box-shadow: 0 0 12px var(--dark-mode-background);
 		color: var(--white);
         font-weight: 300;
 		&-option {

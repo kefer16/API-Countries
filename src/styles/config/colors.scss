@@ -1,8 +1,15 @@
 :root {
-	--dark-blue: hsl(209, 23%, 22%);
-	--dark-mode-background: hsl(207, 26%, 17%); //(Dark Mode Background)
-	--light-mode-text: hsl(200, 15%, 8%); //(Light Mode Text)
-	--dark-gray: hsl(0, 0%, 52%); //(Light Mode Input)
-	--very-light-gray: hsl(0, 0%, 98%); //(Light Mode Background)
-	--white: hsl(0, 0%, 100%); //(Dark Mode Text & Light Mode Elements)
+	--background-primary: hsl(0, 0%, 98%);
+	--background-secondary: hsl(0, 0%, 100%);
+	--background-tertiary: hsl(200, 15%, 8%);
+	--text-color:  hsl(200, 15%, 8%);
+	--box-shadow: rgba(162, 160, 160,0.7);
+}
+
+.dark-mode {
+	--background-primary: hsl(209, 23%, 22%);
+	--background-secondary: hsl(207, 26%, 17%);
+	--background-terciary: hsl(200, 15%, 8%);
+	--text-color: hsl(0, 0%, 100%);
+	--box-shadow: rgba(131, 129, 129, .7);
 }

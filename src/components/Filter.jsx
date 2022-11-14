@@ -48,7 +48,7 @@ export const Filter = () => {
 
 	return (
 		<>
-			<div className="darck-body container">
+			<div className="background-body container">
 				<div className="filter-container container-max">
 					<form onSubmit={filterSubmit} className="form-container">
 						<div className="form-container-search">

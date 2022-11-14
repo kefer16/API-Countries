@@ -4,7 +4,10 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'Nunito Sans', sans-serif;
+	font-family: "Nunito Sans", sans-serif;
+}
+%style-boxshadow {
+	box-shadow: 0 0 3px var(--box-shadow);
 }
 .container {
 	width: 100;
@@ -13,11 +16,15 @@
 	max-width: 1240px;
 	margin: 0 auto;
 }
-
-.darck-header {
-	background-color: var(--dark-blue);
+.background-header {
+	@extend %style-boxshadow;
+	background-color: var(--background-primary);
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 9;
 }
 
-.darck-body {
-	background-color: var(--dark-mode-background);
+.background-body {
+	background-color: var(--background-secondary);
 }

@@ -1,11 +1,15 @@
+@import "./config/config.scss";
 .card {
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
-	background-color: var(--dark-blue);
 	border-radius: 0.5em;
 	cursor: pointer;
 	text-decoration: none;
+	color: var(--text-color);
+	background-color: var(--background-primary);
+	@extend %style-boxshadow;
+
 	&-image {
 		width: 1fr;
 		
@@ -13,7 +17,7 @@
 	}
 	&-text {
 		padding: 1.5em;
-		color: var(--white);
+		
 		&-title {
 			font-weight: 600;
 			font-size: 1.1em;
@@ -22,12 +26,12 @@
 		&-description {
 			font-size: 0.9em;
 			font-weight: 200;
-			color: rgba(var(--white), 0.6);
+			color: rgba(var(--text-color), 0.6);
 			line-height: 1.5em;
 			&-bold {
 				margin-right: 0.5em;
 				font-weight: 300;
-				color: var(--white);
+				color: var(--text-color);
 			}
 		}
 	}

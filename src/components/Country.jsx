@@ -14,7 +14,7 @@ export const Country = ({
 	languages,
 }) => {
 	return (
-		<div className="darck-body container">
+		<div className="background-body container">
 			<div className="country-container container-max">
 				<img className="country-image" src={svgImage} alt={`bandera de ${title}`} />
 				<div className="country-descripcion">

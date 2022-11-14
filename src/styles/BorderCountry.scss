@@ -1,3 +1,5 @@
+@import "./config/config.scss";
+
 .bordercountry {
 	width: 100%;
 	display: flex;
@@ -8,7 +10,7 @@
 
 	&-container {
 		padding: 20px;
-		color: var(--white);
+		color: var(--text-color);
 	}
 	&-title {
 		font-weight: 600;
@@ -20,14 +22,14 @@
 		align-items: center;
 		height: 40px;
 		padding: 5px 30px;
-		background-color: var(--dark-blue);
-		box-shadow: 0 0 7px rgba(#222, 0.5);
+		background-color: var(--background-primary);
+		@extend %style-boxshadow;
 		font-size: 1rem;
 		font-weight: 300;
 		border-radius: 3px;
 		cursor: pointer;
 		text-decoration: none;
-		color: var(--white);
+		color: var(--text-color);
 	}
 	&-nofound {
 		font-style: italic;

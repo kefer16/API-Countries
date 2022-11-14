@@ -1,26 +1,28 @@
-.return-container{
-    width: 100;
-    height: 100px;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+@import "./config/config.scss";
 
-    &-button{
-        width: 120px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border: none;
-        padding: 5px 20px;
-        background-color: var(--dark-blue);
-        border-radius: 5px;
-        box-shadow: 0 0 7px rgba(#222,0.5);
-        color: var(--white);
-        font-size: 1.1rem;
-        font-weight: 300;
-        cursor: pointer;
-        text-decoration: none;
-    }
+.return-container {
+	width: 100;
+	height: 100px;
+	padding: 0 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	&-button {
+		width: 120px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border: none;
+		padding: 5px 20px;
+		background-color: var(--background-primary);
+		border-radius: 5px;
+		@extend %style-boxshadow;
+		color: var(--text-color);
+		font-size: 1.1rem;
+		font-weight: 300;
+		cursor: pointer;
+		text-decoration: none;
+	}
 }

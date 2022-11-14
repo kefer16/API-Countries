@@ -1,6 +1,7 @@
 .loader{
     &-container{
         position: absolute;
+        z-index: 99;
         top: 0;
         width: 100%;
         display: flex;

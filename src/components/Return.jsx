@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export const Return = () => {
 	return (
-		<div className="darck-body container">
+		<div className="background-body container">
 			<div className="return-container container-max">
 				<Link to="/" className="return-container-button">
 					<KeyboardBackspaceRoundedIcon /> Back

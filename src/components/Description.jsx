@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import get from "axios";
+import { useParams } from "react-router-dom";
 import "../styles/Description.scss";
 import { Return } from "./Return";
 import { BorderCountry } from "./BorderCountry";
 import { Country } from "./Country";
-
-import { useParams } from "react-router-dom";
 import { Loader } from "./Loader";
-
+import { LineBreackHeader } from "./LineBreackHeader";
 
 const getCountries = async (codeCountry) => {
 	const url = `${process.env.REACT_APP_URL_API}/alpha/${codeCountry}`;
@@ -35,6 +34,7 @@ export const Description = (props) => {
 		<>
 			{countries ? (
 				<>
+					<LineBreackHeader />
 					<Return key={`r${countries.cca2} `} />
 					<Country
 						key={countries.cca2}
@@ -50,7 +50,7 @@ export const Description = (props) => {
 						languages={Object.values(countries.languages).toString()}
 					/>
 					{/* {countries.borders ? ( */}
-						<BorderCountry key={`cb${countries.cca2}`} borders={countries.borders} />
+					<BorderCountry key={`cb${countries.cca2}`} borders={countries.borders} />
 					{/* ) : (
 						<></>
 					)} */}

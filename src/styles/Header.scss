@@ -1,3 +1,5 @@
+@import "./config/config.scss";
+
 .header-container {
 	position: relative;
 	width: 100;
@@ -7,22 +9,37 @@
 	align-items: center;
 	justify-content: space-between;
 	font-size: 1.1rem;
+	color: var(--text-color);
+	
 	@media screen and (max-width: 600px) {
-		font-size: .8rem;
+		font-size: 0.8rem;
 	}
 
 	&-title {
-		color: var(--white);
 		font-weight: 800;
 	}
 	&-mode {
+		@extend %style-boxshadow;
 		display: flex;
 		height: 30px;
 		align-items: center;
-		color: var(--white);
 		font-weight: 600;
+		cursor: pointer;
+		border-radius: 20px;
+		padding: 20px;
+		font-size: 15px;
+		
 		svg {
 			margin-right: 10px;
+			font-size: 20px;
+			
+		}
+
+		&-ligth{
+			color: #FFF2C1;
+		}
+		&-darck{
+			color: #FFE02F;
 		}
 	}
 }

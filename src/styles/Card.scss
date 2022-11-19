@@ -1,5 +1,7 @@
 @import "./config/config.scss";
+
 .card {
+	max-height: 400px;
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
@@ -8,27 +10,30 @@
 	text-decoration: none;
 	color: var(--text-color);
 	background-color: var(--background-primary);
+	transition: transform 0.3s ease;
 	@extend %style-boxshadow;
-	
 
 	&-image {
 		width: 1fr;
-		
+
 		object-fit: cover;
 	}
+
 	&-text {
 		padding: 1.5em;
-		
+
 		&-title {
 			font-weight: 600;
 			font-size: 1.1em;
 			margin-bottom: 1em;
 		}
+
 		&-description {
 			font-size: 0.9em;
 			font-weight: 200;
 			color: rgba(var(--text-color), 0.6);
 			line-height: 1.5em;
+
 			&-bold {
 				margin-right: 0.5em;
 				font-weight: 300;
@@ -38,16 +43,6 @@
 	}
 
 	&:hover {
-		animation: example both 0.7s;
-	}
-}
-
-@keyframes example {
-	0% {
-		transform:translateY(-7px);
-	}
-	
-	100% {
-		translatey: translateY(0px);
+		transform: translateY(-5px);
 	}
 }

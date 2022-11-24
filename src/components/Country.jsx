@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/Country.scss";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export const Country = ({
 	svgImage,
@@ -16,9 +17,15 @@ export const Country = ({
 	return (
 		<div className="background-body container">
 			<div className="country-container container-max">
-				<img className="country-image" src={svgImage} alt={`bandera de ${title}`} />
+				<LazyLoadImage
+					className="country-image"
+					src={svgImage}
+					alt={`bandera de ${title}`}
+				/>
 				<div className="country-descripcion">
-					<p className="country-descripcion-text country-descripcion-title">{title}</p>
+					<p className="country-descripcion-text country-descripcion-title">
+						{title}
+					</p>
 					<p className="country-descripcion-text">
 						<strong className="country-descripcion-text-bold">Native Name: </strong>
 						{nativeName}

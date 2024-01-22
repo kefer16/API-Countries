@@ -1,7 +1,8 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import "../styles/Filter.scss";
 import { Grid } from "./Grid";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
+import { Params, useNavigate, useParams } from "react-router-dom";
 const filterOptions: FilterProps[] = [
    {
       code: "all",
@@ -35,21 +36,39 @@ interface FilterProps {
    name: string;
 }
 export const Filter = () => {
-   const [region, setRegion] = useState("all");
-   const [search, setSearch] = useState("");
+   const navigate = useNavigate();
+   const { regionid, searchcontent }: Readonly<Params<string>> = useParams();
+   const [region, setRegion] = useState(
+      regionid === undefined ? "all" : regionid
+   );
+   const [search, setSearch] = useState(
+      searchcontent === undefined ? "" : searchcontent
+   );
 
    function filterSubmit(e: FormEvent<HTMLFormElement>) {
       e.preventDefault();
    }
 
    function regionSelected(e: ChangeEvent<HTMLSelectElement>) {
-      setRegion(e.target.value);
+      const regionId = e.target.value;
+      setRegion(regionId);
+      navigate(`/region/${regionId}/${search}`);
    }
 
    function searchChange(e: ChangeEvent<HTMLInputElement>) {
-      setSearch(e.target.value);
       e.preventDefault();
+      const searchContent = e.target.value;
+      setSearch(searchContent);
+      navigate(`/region/${region}/${searchContent}`);
    }
+
+   useEffect(() => {
+      const regionvalidada = regionid === undefined ? "all" : regionid;
+      const searchValida = searchcontent === undefined ? "" : searchcontent;
+
+      setRegion(regionvalidada);
+      setSearch(searchValida);
+   }, [regionid, searchcontent]);
 
    return (
       <>
@@ -88,7 +107,7 @@ export const Filter = () => {
             </div>
          </div>
 
-         <Grid searchValue={search} peticion={region ? region : "all"} />
+         <Grid searchValue={search} peticion={region} />
       </>
    );
 };

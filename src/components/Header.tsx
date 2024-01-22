@@ -1,28 +1,84 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "../styles/Header.scss";
 import NightsStayRoundedIcon from "@mui/icons-material/NightsStayRounded";
 import WbSunnyRoundedIcon from "@mui/icons-material/WbSunnyRounded";
 
 export const Header = () => {
-   const [activeDarck, setActiveDarck] = useState(false);
-
-   function asignBackgroundMode() {
-      setActiveDarck(!activeDarck);
-      const divRoot: HTMLElement | null = document.getElementById("root");
-      divRoot?.classList.toggle("dark-mode");
+   const [activeDark, setActiveDarck] = useState(false);
+   function createSesionMode() {
+      const darkMode = false;
+      localStorage.setItem("country-theme-mode", JSON.stringify(darkMode));
    }
+
+   function changeSesion(isDark: boolean) {
+      localStorage.setItem("country-theme-mode", JSON.stringify(isDark));
+   }
+
+   function existMode(): boolean {
+      return localStorage.hasOwnProperty("country-theme-mode");
+   }
+
+   function getSesionMode(): boolean {
+      const value = localStorage.getItem("country-theme-mode") ?? "";
+      const parseValue = value === "true";
+      return parseValue;
+   }
+
+   function aplicateModeHTML(value: boolean) {
+      const divRoot: HTMLElement | null = document.getElementById("root");
+      console.log(divRoot);
+
+      if (value) {
+         divRoot?.classList.add("dark-mode");
+      } else {
+         divRoot?.classList.remove("dark-mode");
+      }
+   }
+
+   const validateTheme = useCallback(() => {
+      if (!existMode()) {
+         createSesionMode();
+      }
+      const isDark = getSesionMode();
+      const divRoot: HTMLElement | null = document.getElementById("root");
+      if (isDark) {
+         setActiveDarck(false);
+         changeSesion(false);
+         divRoot?.classList.remove("dark-mode");
+      } else {
+         setActiveDarck(true);
+         changeSesion(true);
+         divRoot?.classList.add("dark-mode");
+      }
+
+      // setActiveDarck(!activeDark);
+      // const divRoot: HTMLElement | null = document.getElementById("root");
+      // divRoot?.classList.toggle("dark-mode");
+   }, []);
+
+   useEffect(() => {
+      if (existMode()) {
+         const value = getSesionMode();
+         aplicateModeHTML(value);
+      }
+   }, []);
+
+   // useEffect(() => {
+   //    if (existMode()) {
+   //       validateTheme();
+   //    } else {
+   //       createSesionMode();
+   //    }
+   // }, [validateTheme]);
 
    return (
       <header className="background-header container">
          <nav className="header-container container-max">
             <h1 className="header-container-title">Where in the World?</h1>
-            <span
-               onClick={asignBackgroundMode}
-               className="header-container-mode"
-            >
-               {activeDarck ? (
+            <span onClick={validateTheme} className="header-container-mode">
+               {activeDark ? (
                   <>
-                     <NightsStayRoundedIcon className="header-container-mode-ligth" />{" "}
+                     <NightsStayRoundedIcon className="header-container-mode-ligth" />
                      Darck Mode
                   </>
                ) : (

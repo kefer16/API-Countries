@@ -20,7 +20,7 @@ export const Card = ({
    return (
       <Link to={`/description/${code}`} className="card">
          <Suspense fallback={<h1 className="card-image">cargando</h1>}>
-            <img src={image} alt={name} className="card-image" />
+            <img src={image} alt={name} className="card-image" loading="lazy" />
          </Suspense>
 
          <div className="card-text">

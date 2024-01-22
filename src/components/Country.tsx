@@ -32,6 +32,7 @@ export const Country = ({
                   className="country-image"
                   src={svgImage}
                   alt={`bandera de ${title}`}
+                  loading="lazy"
                />
             </Suspense>
 

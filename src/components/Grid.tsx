@@ -1,73 +1,51 @@
 import { useEffect, useState } from "react";
-import get from "axios";
 import { Card } from "./Card";
 import "../styles/Grid.scss";
 import { Loader } from "./Loader";
-interface CardProps {
-   cca3: string;
-   code: string;
-   image: string;
-   name: {
-      common: string;
-   };
-   population: string;
-   region: string;
-   capital: string;
-   flags: {
-      png: string;
-   };
-}
-const getCountries = async (searchValue: string, peticion: string) => {
-   let url = "",
-      data: any = [];
-
-   if (peticion === "all") {
-      url = `${process.env.REACT_APP_URL_API}/${peticion}`;
-   } else {
-      url = `${process.env.REACT_APP_URL_API}/region/${peticion}`;
-   }
-
-   await get(url).then((response) => {
-      data = response.data;
-   });
-
-   if (searchValue) {
-      data = data.filter((item: any) =>
-         item.name.common.toLowerCase().includes(searchValue.toLowerCase())
-      );
-   }
-
-   // data = data.slice(16,32)
-   // console.log(data.length);
-
-   return data;
-};
+import { CountryApi } from "../apis/country.api";
+import { RegionDto } from "../dtos/responses/AllRegion.dto";
 interface GridProps {
    searchValue: string;
    peticion: string;
 }
+
 export const Grid = ({ searchValue, peticion }: GridProps) => {
-   const [cards, setCards] = useState<CardProps[]>();
+   const [cards, setCards] = useState<RegionDto[]>([]);
+
+   const getCountries = async (searchValue: string, peticion: string) => {
+      const apiCountry = new CountryApi();
+      let data: RegionDto[] = [];
+
+      if (peticion === "all" || peticion === "") {
+         await apiCountry.allRegion().then((resp) => {
+            data = resp;
+         });
+      } else {
+         await apiCountry.findRegion(peticion).then((resp: RegionDto[]) => {
+            data = resp;
+         });
+      }
+      if (searchValue) {
+         data = data.filter((item: RegionDto) =>
+            item.name.common.toLowerCase().includes(searchValue.toLowerCase())
+         );
+      }
+
+      setCards(data);
+   };
 
    useEffect(() => {
-      const execute = async () => {
-         const dataCountries = await getCountries(searchValue, peticion);
-         setCards(dataCountries);
-      };
-
-      execute();
+      getCountries(searchValue, peticion);
    }, [searchValue, peticion]);
 
    return (
       <div className="background-body container">
          {cards ? (
             <div className="gridcountries container-max ">
-               {cards.length === 0 ? (
+               {cards.length === 0 && (
                   <p className="gridcountries-vacio">
                      No country found, change filters
                   </p>
-               ) : (
-                  <></>
                )}
                {cards.map((card) => {
                   return (

@@ -1,43 +1,29 @@
 import { useEffect } from "react";
-import get from "axios";
 import { Link } from "react-router-dom";
 import "../styles/BorderCountry.scss";
 import { useState } from "react";
-
-const getNameBorders = async (borders: any) => {
-   let data: any = [];
-   let url = "";
-
-   let codes = borders === undefined ? "" : borders.toString();
-
-   if (codes) {
-      url = `${process.env.REACT_APP_URL_API}/alpha?codes=${codes}`;
-      await get(url).then(function (response) {
-         data = response.data;
-      });
-   }
-
-   return data;
-};
+import { CountryApi } from "../apis/country.api";
+import { FindCodesDto } from "../dtos/responses/FindCodes.dto";
 interface BorderCountryProps {
    borders: any;
 }
-interface ItemBoderProps {
-   cca2: string;
-   name: {
-      common: string;
-   };
-}
+
 export const BorderCountry = ({ borders }: BorderCountryProps) => {
-   const [itemBoder, setItemBorder] = useState<ItemBoderProps[]>([]);
+   const [itemBoder, setItemBorder] = useState<FindCodesDto[]>([]);
+
+   const getCountries = async (borderCodes: string) => {
+      if (borderCodes) {
+         const apiCountry = new CountryApi();
+         await apiCountry
+            .findCodesCountry(borderCodes)
+            .then((resp: FindCodesDto[]) => {
+               setItemBorder(resp);
+            });
+      }
+   };
 
    useEffect(() => {
-      const execute = async () => {
-         const dataCountries = await getNameBorders(borders);
-         setItemBorder(dataCountries);
-      };
-
-      execute();
+      getCountries(borders);
    }, [borders]);
 
    return (
@@ -46,7 +32,7 @@ export const BorderCountry = ({ borders }: BorderCountryProps) => {
             <p className="bordercountry-title">Border Countries:</p>
             <div className="bordercountry">
                {itemBoder.length > 0 ? (
-                  itemBoder.map((country: ItemBoderProps) => (
+                  itemBoder.map((country: FindCodesDto) => (
                      <Link
                         key={country.cca2}
                         to={`/description/${country.cca2}`}

@@ -7,10 +7,10 @@
 	font-family: "Nunito Sans", sans-serif;
 }
 %style-boxshadow {
-	box-shadow: 0 0 3px var(--box-shadow);
+	box-shadow: 0 0 1.3px var(--box-shadow);
 }
 .container {
-	width: 100;
+	width: 100%;
 	transition: 0.3s ease-in;
 }
 .container-max {
@@ -28,4 +28,12 @@
 
 .background-body {
 	background-color: var(--background-secondary);
+}
+
+.filter-body {
+	background-color: var(--background-secondary);	
+	position: fixed;
+	top: 80px;
+	z-index: 10;
+	@extend %style-boxshadow;
 }

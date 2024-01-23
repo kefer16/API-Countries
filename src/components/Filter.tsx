@@ -3,6 +3,7 @@ import "../styles/Filter.scss";
 import { Grid } from "./Grid";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import { Params, useNavigate, useParams } from "react-router-dom";
+import { LineBreackHeader } from "./LineBreackHeader";
 const filterOptions: FilterProps[] = [
    {
       code: "all",
@@ -72,7 +73,7 @@ export const Filter = () => {
 
    return (
       <>
-         <div className="background-body container">
+         <div className="filter-body container">
             <div className="filter-container container-max">
                <form onSubmit={filterSubmit} className="form-container">
                   <div className="form-container-search">
@@ -106,7 +107,7 @@ export const Filter = () => {
                </form>
             </div>
          </div>
-
+         <LineBreackHeader />
          <Grid searchValue={search} peticion={region} />
       </>
    );

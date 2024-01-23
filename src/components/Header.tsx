@@ -50,10 +50,6 @@ export const Header = () => {
          changeSesion(true);
          divRoot?.classList.add("dark-mode");
       }
-
-      // setActiveDarck(!activeDark);
-      // const divRoot: HTMLElement | null = document.getElementById("root");
-      // divRoot?.classList.toggle("dark-mode");
    }, []);
 
    useEffect(() => {
@@ -62,14 +58,6 @@ export const Header = () => {
          aplicateModeHTML(value);
       }
    }, []);
-
-   // useEffect(() => {
-   //    if (existMode()) {
-   //       validateTheme();
-   //    } else {
-   //       createSesionMode();
-   //    }
-   // }, [validateTheme]);
 
    return (
       <header className="background-header container">

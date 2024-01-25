@@ -1,9 +1,18 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import {
+   ChangeEvent,
+   FormEvent,
+   useCallback,
+   useEffect,
+   useState,
+} from "react";
 import "../styles/Filter.scss";
 import { Grid } from "./Grid";
-import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
+import { Search as SearchIcon } from "lucide-react";
 import { Params, useNavigate, useParams } from "react-router-dom";
 import { LineBreackHeader } from "./LineBreackHeader";
+import Pagination from "./Pagination";
+import { RegionDto } from "../dtos/responses/AllRegion.dto";
+import { CountryApi } from "../apis/country.api";
 const filterOptions: FilterProps[] = [
    {
       code: "all",
@@ -39,6 +48,12 @@ interface FilterProps {
 export const Filter = () => {
    const navigate = useNavigate();
    const { regionid, searchcontent }: Readonly<Params<string>> = useParams();
+
+   // const [countries, setCountries] = useState<RegionDto[]>([]);
+   const [countriesFiltered, setCountriesFiltered] = useState<RegionDto[]>([]);
+   const [numbersPages, setNumbersPages] = useState<number[]>([]);
+   const [numbersResults] = useState<number>(8);
+   const [currentPage, setCurrentPage] = useState<number>(1);
    const [region, setRegion] = useState(
       regionid === undefined ? "all" : regionid
    );
@@ -53,6 +68,7 @@ export const Filter = () => {
    function regionSelected(e: ChangeEvent<HTMLSelectElement>) {
       const regionId = e.target.value;
       setRegion(regionId);
+      setCurrentPage(1);
       navigate(`/region/${regionId}/${search}`);
    }
 
@@ -60,16 +76,56 @@ export const Filter = () => {
       e.preventDefault();
       const searchContent = e.target.value;
       setSearch(searchContent);
+      setCurrentPage(1);
       navigate(`/region/${region}/${searchContent}`);
    }
+   function generationArrayNumbers(quantityElements: number): number[] {
+      return Array.from({ length: quantityElements }, (_, index) => index + 1);
+   }
+   const getCountries = useCallback(
+      async (
+         searchValue: string,
+         peticion: string,
+         numbersResults: number,
+         currentPage: number
+      ) => {
+         const apiCountry = new CountryApi();
+         let data: RegionDto[] = [];
 
+         if (peticion === "all" || peticion === "") {
+            await apiCountry.allRegion().then((resp) => {
+               data = resp;
+            });
+         } else {
+            await apiCountry.findRegion(peticion).then((resp: RegionDto[]) => {
+               data = resp;
+            });
+         }
+         if (searchValue) {
+            data = data.filter((item: RegionDto) =>
+               item.name.common
+                  .toLowerCase()
+                  .includes(searchValue.toLowerCase())
+            );
+         }
+
+         // setCountries(data);
+         const numberRowsSalt = (currentPage - 1) * numbersResults;
+         const numberPagination = Math.ceil(data.length / numbersResults);
+         data = data.splice(numberRowsSalt, numbersResults);
+         setNumbersPages(generationArrayNumbers(numberPagination));
+         setCountriesFiltered(data);
+      },
+      []
+   );
    useEffect(() => {
       const regionvalidada = regionid === undefined ? "all" : regionid;
       const searchValida = searchcontent === undefined ? "" : searchcontent;
 
       setRegion(regionvalidada);
       setSearch(searchValida);
-   }, [regionid, searchcontent]);
+      getCountries(searchValida, regionvalidada, numbersResults, currentPage);
+   }, [regionid, searchcontent, numbersResults, currentPage, getCountries]);
 
    return (
       <>
@@ -77,7 +133,7 @@ export const Filter = () => {
             <div className="filter-container container-max">
                <form onSubmit={filterSubmit} className="form-container">
                   <div className="form-container-search">
-                     <SearchRoundedIcon className="form-container-search-icon" />
+                     <SearchIcon className="form-container-search-icon" />
                      <input
                         id="input-search"
                         value={search}
@@ -108,7 +164,12 @@ export const Filter = () => {
             </div>
          </div>
          <LineBreackHeader />
-         <Grid searchValue={search} peticion={region} />
+         <Grid countries={countriesFiltered} />
+         <Pagination
+            numbersPage={numbersPages}
+            currentPage={currentPage}
+            funCurrentPage={setCurrentPage}
+         />
       </>
    );
 };

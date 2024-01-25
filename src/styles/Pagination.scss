@@ -1,0 +1,48 @@
+@import "./config/config.scss";
+
+.pagination {
+   width: 100%;
+   display: flex;
+   gap: 1rem;
+   padding: 20px;
+   justify-content: center;
+
+   // height: 80px;
+   // background-color: red;
+   &__item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      padding: 5px 20px;
+      
+      border-radius: 5px;
+      color: var(--text-color);
+      font-weight: 300;
+      
+      text-decoration: none;
+      &-number {
+         @extend %style-boxshadow;
+         background-color: var(--background-primary);
+         font-size: 1.1rem;
+         cursor: pointer;
+         &:hover {
+            background-color: rgba(#000, 0.3);
+         }
+      }
+      &-icon {
+         @extend %style-boxshadow;
+         background-color: var(--background-primary);
+         font-size: 10rem;
+         cursor: pointer;
+         &:hover {
+            background-color: rgba(#000, 0.3);
+         }
+      }
+
+      &-active{
+         background-color: rgba(#000, 0.3);
+      }
+    
+   }
+}

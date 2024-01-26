@@ -47,11 +47,12 @@ interface FilterProps {
 }
 export const Filter = () => {
    const navigate = useNavigate();
+
    const [countriesFiltered, setCountriesFiltered] = useState<RegionDto[]>([]);
    const [numbersPages, setNumbersPages] = useState<number[]>([]);
    const [numbersResults] = useState<number>(8);
    const [currentPage, setCurrentPage] = useState<number>(1);
-   const [region, setRegion] = useState("all");
+   const [region, setRegion] = useState("");
    const [search, setSearch] = useState("");
 
    function filterSubmit(e: FormEvent<HTMLFormElement>) {
@@ -128,19 +129,15 @@ export const Filter = () => {
       const regionid = urlParams.get("regionid");
       const searchcontent = urlParams.get("search");
       const page = urlParams.get("page");
+      const regionvalidada = regionid === null ? "all" : regionid;
+      const searchValida = searchcontent === null ? "" : searchcontent;
+      let pageValida = page === null ? 1 : Number(page);
+      pageValida = pageValida <= 0 ? 1 : Number(page);
 
-      const regionvalidada =
-         regionid === undefined || regionid === null ? "all" : regionid;
-      const searchValida =
-         searchcontent === undefined || searchcontent === null
-            ? ""
-            : searchcontent;
-      let pageValida = page === undefined || page === null ? 1 : Number(page);
-      pageValida = pageValida <= 0 ? 1 : pageValida;
       setRegion(regionvalidada);
       setSearch(searchValida);
       setCurrentPage(pageValida);
-      getCountries(searchValida, regionvalidada, numbersResults, currentPage);
+      getCountries(searchValida, regionvalidada, numbersResults, pageValida);
    }, [region, search, numbersResults, currentPage, getCountries]);
 
    return (

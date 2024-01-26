@@ -67,12 +67,12 @@ export const Header = () => {
                {activeDark ? (
                   <>
                      <NightsStayRoundedIcon className="header-container-mode-ligth" />
-                     Darck Mode
+                     Dark Mode
                   </>
                ) : (
                   <>
                      <WbSunnyRoundedIcon className="header-container-mode-darck" />
-                     Ligth Mode
+                     Light Mode
                   </>
                )}
             </span>

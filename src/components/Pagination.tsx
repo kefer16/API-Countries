@@ -1,12 +1,12 @@
 import "../styles/Pagination.scss";
 import { ChevronLeft as ChevronLeftIcon } from "lucide-react";
 import { ChevronRight as ChevronRightIcon } from "lucide-react";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface PaginationProps {
    numbersPage: number[];
    currentPage: number;
-   funCurrentPage: Dispatch<SetStateAction<number>>;
+   funCurrentPage: (page: number) => void;
 }
 
 export default function Pagination({
@@ -65,9 +65,10 @@ export default function Pagination({
                         </>
                      )}
 
-                  {modifiedPagination.map((item) => {
+                  {modifiedPagination.map((item, index) => {
                      return (
                         <li
+                           key={index}
                            className={`pagination__item pagination__item-number ${
                               item === currentPage && "pagination__item-active"
                            }`}

@@ -8,7 +8,7 @@ import {
 import "../styles/Filter.scss";
 import { Grid } from "./Grid";
 import { Search as SearchIcon } from "lucide-react";
-import { Params, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { LineBreackHeader } from "./LineBreackHeader";
 import Pagination from "./Pagination";
 import { RegionDto } from "../dtos/responses/AllRegion.dto";
@@ -47,19 +47,12 @@ interface FilterProps {
 }
 export const Filter = () => {
    const navigate = useNavigate();
-   const { regionid, searchcontent }: Readonly<Params<string>> = useParams();
-
-   // const [countries, setCountries] = useState<RegionDto[]>([]);
    const [countriesFiltered, setCountriesFiltered] = useState<RegionDto[]>([]);
    const [numbersPages, setNumbersPages] = useState<number[]>([]);
    const [numbersResults] = useState<number>(8);
    const [currentPage, setCurrentPage] = useState<number>(1);
-   const [region, setRegion] = useState(
-      regionid === undefined ? "all" : regionid
-   );
-   const [search, setSearch] = useState(
-      searchcontent === undefined ? "" : searchcontent
-   );
+   const [region, setRegion] = useState("all");
+   const [search, setSearch] = useState("");
 
    function filterSubmit(e: FormEvent<HTMLFormElement>) {
       e.preventDefault();
@@ -67,18 +60,28 @@ export const Filter = () => {
 
    function regionSelected(e: ChangeEvent<HTMLSelectElement>) {
       const regionId = e.target.value;
+      const pageInitial = 1;
       setRegion(regionId);
-      setCurrentPage(1);
-      navigate(`/region/${regionId}/${search}`);
+      setCurrentPage(pageInitial);
+      navigate(`/?regionid=${regionId}&search=${search}&page=${pageInitial}`);
    }
 
    function searchChange(e: ChangeEvent<HTMLInputElement>) {
       e.preventDefault();
       const searchContent = e.target.value;
+      const pageInitial = 1;
       setSearch(searchContent);
-      setCurrentPage(1);
-      navigate(`/region/${region}/${searchContent}`);
+      setCurrentPage(pageInitial);
+      navigate(
+         `/?regionid=${region}&search=${searchContent}&page=${pageInitial}`
+      );
    }
+   const changePage = (page: number) => {
+      setRegion(region);
+      setSearch(search);
+      setCurrentPage(page);
+      navigate(`/?regionid=${region}&search=${search}&page=${page}`);
+   };
    function generationArrayNumbers(quantityElements: number): number[] {
       return Array.from({ length: quantityElements }, (_, index) => index + 1);
    }
@@ -109,7 +112,6 @@ export const Filter = () => {
             );
          }
 
-         // setCountries(data);
          const numberRowsSalt = (currentPage - 1) * numbersResults;
          const numberPagination = Math.ceil(data.length / numbersResults);
          data = data.splice(numberRowsSalt, numbersResults);
@@ -118,14 +120,28 @@ export const Filter = () => {
       },
       []
    );
-   useEffect(() => {
-      const regionvalidada = regionid === undefined ? "all" : regionid;
-      const searchValida = searchcontent === undefined ? "" : searchcontent;
 
+   useEffect(() => {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+
+      const regionid = urlParams.get("regionid");
+      const searchcontent = urlParams.get("search");
+      const page = urlParams.get("page");
+
+      const regionvalidada =
+         regionid === undefined || regionid === null ? "all" : regionid;
+      const searchValida =
+         searchcontent === undefined || searchcontent === null
+            ? ""
+            : searchcontent;
+      let pageValida = page === undefined || page === null ? 1 : Number(page);
+      pageValida = pageValida <= 0 ? 1 : pageValida;
       setRegion(regionvalidada);
       setSearch(searchValida);
+      setCurrentPage(pageValida);
       getCountries(searchValida, regionvalidada, numbersResults, currentPage);
-   }, [regionid, searchcontent, numbersResults, currentPage, getCountries]);
+   }, [region, search, numbersResults, currentPage, getCountries]);
 
    return (
       <>
@@ -168,7 +184,7 @@ export const Filter = () => {
          <Pagination
             numbersPage={numbersPages}
             currentPage={currentPage}
-            funCurrentPage={setCurrentPage}
+            funCurrentPage={changePage}
          />
       </>
    );

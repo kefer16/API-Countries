@@ -11,8 +11,8 @@ const App = () => {
          <Header />
          <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/region/:regionid" element={<Home />} />
-            <Route path="/region/:regionid/:searchcontent" element={<Home />} />
+            {/* <Route path="/region/" element={<Home />} /> */}
+            {/* <Route path="/region/:regionid/:searchcontent" element={<Home />} /> */}
             <Route path="/description/:codeCountry" element={<Description />} />
          </Routes>
       </Router>

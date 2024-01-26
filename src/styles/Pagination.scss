@@ -14,18 +14,18 @@
       align-items: center;
       justify-content: center;
       border: none;
-      padding: 5px 20px;
-      
+      padding: 5px 10px;
       border-radius: 5px;
       color: var(--text-color);
       font-weight: 300;
-      
+
       text-decoration: none;
       &-number {
          @extend %style-boxshadow;
          background-color: var(--background-primary);
-         font-size: 1.1rem;
+         font-size: 1rem;
          cursor: pointer;
+
          &:hover {
             background-color: rgba(#000, 0.3);
          }
@@ -33,16 +33,17 @@
       &-icon {
          @extend %style-boxshadow;
          background-color: var(--background-primary);
-         font-size: 10rem;
          cursor: pointer;
+         &-inactive {
+            cursor: not-allowed;
+         }
          &:hover {
             background-color: rgba(#000, 0.3);
          }
       }
 
-      &-active{
+      &-active {
          background-color: rgba(#000, 0.3);
       }
-    
    }
 }

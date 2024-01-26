@@ -25,7 +25,7 @@ export const Country = ({
    languages,
 }: CountryProps) => {
    return (
-      <div className="background-body container">
+      <div className="container">
          <div className="country-container container-max">
             <Suspense fallback={<h1 className="card-image">cargando</h1>}>
                <img

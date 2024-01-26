@@ -1,4 +1,7 @@
 .LineBreackHeader{
     width: 100%;
-    height: 80px;
+    height: 160px;
+    @media screen and (max-width: 600px) {
+		height: (152px + 80px);
+	}
 }

@@ -1,6 +1,5 @@
 .gridcountries {
 	display: grid;
-	min-height: calc(100vh - 160px);
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: 400px;
 	gap: 2.5em;

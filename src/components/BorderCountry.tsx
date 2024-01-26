@@ -27,7 +27,7 @@ export const BorderCountry = ({ borders }: BorderCountryProps) => {
    }, [borders]);
 
    return (
-      <div className="background-body container">
+      <div className="container">
          <div className="bordercountry-container container-max">
             <p className="bordercountry-title">Border Countries:</p>
             <div className="bordercountry">

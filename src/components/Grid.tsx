@@ -8,7 +8,7 @@ interface GridProps {
 
 export const Grid = ({ countries }: GridProps) => {
    return (
-      <div className="background-body container">
+      <div className="container">
          {countries ? (
             <div className="gridcountries container-max ">
                {countries.length === 0 && (

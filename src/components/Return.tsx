@@ -1,5 +1,5 @@
 import "../styles/Return.scss";
-import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
+import { MoveLeft as MoveLeftIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export const Return = () => {
@@ -8,10 +8,10 @@ export const Return = () => {
       navigate(-1);
    };
    return (
-      <div className="background-body container">
+      <div className="container">
          <div className="return-container container-max">
             <div onClick={goBack} className="return-container-button">
-               <KeyboardBackspaceRoundedIcon /> Back
+               <MoveLeftIcon size={20} /> Back
             </div>
          </div>
       </div>

@@ -26,8 +26,6 @@ export const Header = () => {
 
    function aplicateModeHTML(value: boolean) {
       const divRoot: HTMLElement | null = document.getElementById("root");
-      console.log(divRoot);
-
       if (value) {
          divRoot?.classList.add("dark-mode");
       } else {

@@ -132,7 +132,7 @@ export const Filter = () => {
       const regionvalidada = regionid === null ? "all" : regionid;
       const searchValida = searchcontent === null ? "" : searchcontent;
       let pageValida = page === null ? 1 : Number(page);
-      pageValida = pageValida <= 0 ? 1 : Number(page);
+      pageValida = pageValida <= 0 ? 1 : Number(pageValida);
 
       setRegion(regionvalidada);
       setSearch(searchValida);

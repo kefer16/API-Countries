@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../styles/BorderCountry.scss";
+import "./BorderCountry.scss";
 import { useState } from "react";
-import { CountryApi } from "../apis/country.api";
-import { FindCodesDto } from "../dtos/responses/FindCodes.dto";
+import { CountryApi } from "../../apis/country/country.api";
+import { FindCodesDto } from "../../apis/country/dto/FindCodes.dto";
 interface BorderCountryProps {
    borders: any;
 }

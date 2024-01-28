@@ -1,7 +1,7 @@
-import { Card } from "./Card";
-import "../styles/Grid.scss";
-import { Loader } from "./Loader";
-import { RegionDto } from "../dtos/responses/AllRegion.dto";
+import { Card } from "../card/Card";
+import "./Grid.scss";
+import { Loader } from "../loader/Loader";
+import { RegionDto } from "../../apis/country/dto/AllRegion.dto";
 interface GridProps {
    countries: RegionDto[];
 }

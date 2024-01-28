@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import "../styles/Country.scss";
+import "./Country.scss";
 interface CountryProps {
    svgImage: any;
    title: string;

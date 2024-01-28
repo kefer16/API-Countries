@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Return } from "../components/Return";
-import { BorderCountry } from "../components/BorderCountry";
-import { Country } from "../components/Country";
-import { Loader } from "../components/Loader";
-import { CountryApi } from "../apis/country.api";
-import { CountriesDto } from "../dtos/responses/FindCodeCountry.dto";
-import SeparationDescription from "../components/SeparationDescription";
+import { Return } from "../components/return/Return";
+import { BorderCountry } from "../components/border-country/BorderCountry";
+import { Country } from "../components/country/Country";
+import { Loader } from "../components/loader/Loader";
+import { CountryApi } from "../apis/country/country.api";
+import { CountriesDto } from "../apis/country/dto/FindCodeCountry.dto";
+import { LineBreakDescripcion } from "../components/line-break/LineBreackDescription";
 
 export const Description = () => {
    const { codeCountry } = useParams();
@@ -30,7 +30,7 @@ export const Description = () => {
       <div className="container-body">
          {countries ? (
             <>
-               <SeparationDescription />
+               <LineBreakDescripcion />
                <Return />
                <Country
                   key={countries.cca2}

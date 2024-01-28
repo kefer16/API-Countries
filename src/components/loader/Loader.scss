@@ -1,0 +1,17 @@
+.loader-container {
+   position: absolute;
+   z-index: 99;
+   top: 0;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   background-color: rgba(#000, 0.8);
+   // background-color: red;
+   visibility: initial;
+
+   &-oculte {
+      visibility: hidden;
+   }
+}

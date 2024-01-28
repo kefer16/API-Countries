@@ -5,14 +5,14 @@ import {
    useEffect,
    useState,
 } from "react";
-import "../styles/Filter.scss";
-import { Grid } from "./Grid";
+import "./Filter.scss";
+import { Grid } from "../grid/Grid";
 import { Search as SearchIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { LineBreackHeader } from "./LineBreackHeader";
-import Pagination from "./Pagination";
-import { RegionDto } from "../dtos/responses/AllRegion.dto";
-import { CountryApi } from "../apis/country.api";
+import { LineBreackHeader } from "../line-break/LineBreackHeader";
+import Pagination from "../pagination/Pagination";
+import { RegionDto } from "../../apis/country/dto/AllRegion.dto";
+import { CountryApi } from "../../apis/country/country.api";
 const filterOptions: FilterProps[] = [
    {
       code: "all",

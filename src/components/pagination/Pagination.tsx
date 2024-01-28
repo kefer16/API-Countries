@@ -1,4 +1,4 @@
-import "../styles/Pagination.scss";
+import "./Pagination.scss";
 import { ChevronLeft as ChevronLeftIcon } from "lucide-react";
 import { ChevronRight as ChevronRightIcon } from "lucide-react";
 import { useEffect, useState } from "react";

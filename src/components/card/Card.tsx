@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Link } from "react-router-dom";
-import "../styles/Card.scss";
+import "./Card.scss";
 export interface CardProps {
    code: string;
    image: string;

@@ -1,4 +1,4 @@
-import "../styles/Return.scss";
+import "./Return.scss";
 import { MoveLeft as MoveLeftIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 

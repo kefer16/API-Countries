@@ -1,4 +1,4 @@
-import "../styles/Loader.scss";
+import "./Loader.scss";
 import ClipLoader from "react-spinners/ClipLoader";
 interface LoaderProps {
    oculte?: boolean;

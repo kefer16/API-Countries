@@ -1,8 +1,8 @@
 import axios from "axios";
-import { FindCodesDto } from "../dtos/responses/FindCodes.dto";
-import { GlobalConfig } from "../configs/global.config";
-import { CountriesDto } from "../dtos/responses/FindCodeCountry.dto";
-import { RegionDto } from "../dtos/responses/AllRegion.dto";
+import { FindCodesDto } from "./dto/FindCodes.dto";
+import { EnvConfig } from "../../configs/env.config";
+import { CountriesDto } from "./dto/FindCodeCountry.dto";
+import { RegionDto } from "./dto/AllRegion.dto";
 
 export class CountryApi {
    async findCodesCountry(codesCountries: string): Promise<FindCodesDto[]> {
@@ -14,7 +14,7 @@ export class CountryApi {
          };
 
          const response = await axios.get(
-            `${GlobalConfig.url_api}/alpha?codes=${codesCountries}`,
+            `${EnvConfig.url_api}/alpha?codes=${codesCountries}`,
             config
          );
          return response.data;
@@ -32,7 +32,7 @@ export class CountryApi {
          };
 
          const response = await axios.get(
-            `${GlobalConfig.url_api}/alpha/${codeCountry}`,
+            `${EnvConfig.url_api}/alpha/${codeCountry}`,
             config
          );
          return response.data;
@@ -49,7 +49,7 @@ export class CountryApi {
             },
          };
          const response = await axios.get(
-            `${GlobalConfig.url_api}/region/${region}`,
+            `${EnvConfig.url_api}/region/${region}`,
             config
          );
          return response.data;
@@ -66,10 +66,7 @@ export class CountryApi {
             },
          };
 
-         const response = await axios.get(
-            `${GlobalConfig.url_api}/all`,
-            config
-         );
+         const response = await axios.get(`${EnvConfig.url_api}/all`, config);
          return response.data;
       } catch (error: any) {
          return Promise.reject(error);
